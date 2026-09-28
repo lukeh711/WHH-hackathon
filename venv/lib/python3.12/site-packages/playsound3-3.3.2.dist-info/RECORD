@@ -1,0 +1,13 @@
+playsound3-3.3.2.dist-info/INSTALLER,sha256=zuuue4knoyJ-UwPPXg8fezS7VCrXJQrAP7zeNuwvFQg,4
+playsound3-3.3.2.dist-info/METADATA,sha256=G5BO0NTRobPTHPIlOXVnS98C2AZtUcN64Q1wgtUoy3Y,4600
+playsound3-3.3.2.dist-info/RECORD,,
+playsound3-3.3.2.dist-info/REQUESTED,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+playsound3-3.3.2.dist-info/WHEEL,sha256=lCkmxWfQsSc9CfIClYeavTdQeEX2toPqufh9gI35EQA,87
+playsound3-3.3.2.dist-info/licenses/LICENSE,sha256=VTRyASdB4LydQkt1egAUbIjG1zWMkh-UUELP1SdccXw,1155
+playsound3/__init__.py,sha256=hR9_tpDMqf-QTTQKzO_7SYkmM4OxG5K9WMVOpcPd4iI,345
+playsound3/__pycache__/__init__.cpython-312.pyc,,
+playsound3/__pycache__/backends.cpython-312.pyc,,
+playsound3/__pycache__/playsound3.cpython-312.pyc,,
+playsound3/backends.py,sha256=hgglW0QAk7eU_3aeKSyiOnm7YfRTHgNYwlBGTs84flM,4603
+playsound3/playsound3.py,sha256=26Tn8kju7DE_VGDckr0Y0_v7lo5dDJiebCPWWWXo7Hs,12852
+playsound3/py.typed,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0

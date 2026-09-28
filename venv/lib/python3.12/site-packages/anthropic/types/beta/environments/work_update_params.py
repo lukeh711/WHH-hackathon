@@ -1,0 +1,24 @@
+from __future__ import annotations
+
+from typing import Dict, List, Optional
+from typing_extensions import Required, TypedDict
+
+from ...anthropic_beta_param import AnthropicBetaParam
+
+__all__ = ["WorkUpdateParams"]
+
+
+class WorkUpdateParams(TypedDict, total=False):
+    environment_id: Required[str]
+
+    metadata: Required[Dict[str, Optional[str]]]
+    """Metadata patch.
+
+    Set a key to a string to upsert it, or to null to delete it. Omit the field to
+    preserve existing metadata.
+    """
+
+    betas: List[AnthropicBetaParam]
+    """Optional header to specify the beta version(s) you want to use."""
+
+    workspace_id: str

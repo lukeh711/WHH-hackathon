@@ -1,0 +1,33 @@
+from __future__ import annotations
+
+from typing import List
+from typing_extensions import TypedDict
+
+from ...anthropic_beta_param import AnthropicBetaParam
+
+__all__ = ["BatchListParams"]
+
+
+class BatchListParams(TypedDict, total=False):
+    after_id: str
+    """ID of the object to use as a cursor for pagination.
+
+    When provided, returns the page of results immediately after this object.
+    """
+
+    before_id: str
+    """ID of the object to use as a cursor for pagination.
+
+    When provided, returns the page of results immediately before this object.
+    """
+
+    limit: int
+    """Number of items to return per page.
+
+    Defaults to `20`. Ranges from `1` to `1000`.
+    """
+
+    betas: List[AnthropicBetaParam]
+    """Optional header to specify the beta version(s) you want to use."""
+
+    workspace_id: str

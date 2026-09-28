@@ -1,0 +1,20 @@
+from __future__ import annotations
+
+from typing import List
+from typing_extensions import Required, TypedDict
+
+from ...anthropic_beta_param import AnthropicBetaParam
+
+__all__ = ["MemoryDeleteParams"]
+
+
+class MemoryDeleteParams(TypedDict, total=False):
+    memory_store_id: Required[str]
+
+    expected_content_sha256: str
+    """Query parameter for expected_content_sha256"""
+
+    betas: List[AnthropicBetaParam]
+    """Optional header to specify the beta version(s) you want to use."""
+
+    workspace_id: str

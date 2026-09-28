@@ -1,0 +1,21 @@
+from __future__ import annotations
+
+from typing import List
+from typing_extensions import TypedDict
+
+from ..anthropic_beta_param import AnthropicBetaParam
+
+__all__ = ["AgentRetrieveParams"]
+
+
+class AgentRetrieveParams(TypedDict, total=False):
+    version: int
+    """Agent version.
+
+    Omit for the most recent version. Must be at least 1 if specified.
+    """
+
+    betas: List[AnthropicBetaParam]
+    """Optional header to specify the beta version(s) you want to use."""
+
+    workspace_id: str
