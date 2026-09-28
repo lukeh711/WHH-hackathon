@@ -16,12 +16,19 @@ def record_audio(time):
     data = sd.rec(int(time * fs), samplerate=fs, channels=1)
     sd.wait()
     sf.write("audio/out.mp3", data, fs)
-
+    print("stopped")
     segments, info = model.transcribe("audio/out.mp3", beam_size=5, language="en", condition_on_previous_text=False)
-    print(segments)
-    text = []
+    text = ""
     for segment in segments:
-        text.append(segment.text)
-    return text
+        text += segment.text
+    return text.strip()
 
-print(record_audio(seconds))
+def wake_word(text):
+    text = text.split(" ")
+    if "wake" in text:
+        return True
+    else:
+        return False
+text = record_audio(seconds).lower()
+print(text)
+print(wake_word(text))
