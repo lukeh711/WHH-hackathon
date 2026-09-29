@@ -69,9 +69,11 @@ robot:
   blink_interval: [2, 6]  # random seconds between blinks
   drift_interval: [4, 9]  # random seconds between small head movements
   eye_colours:            # r, g, b -- each 0-10
-    listening: [0, 0, 10]   # blue
-    thinking: [10, 5, 0]    # amber
-    speaking: [0, 10, 3]    # green
+    listening: [2, 8, 10]   # friendly sky blue
+    thinking: [10, 7, 2]    # warm amber
+    speaking: [0, 10, 8]    # calm mint green
+    loading: [7, 5, 10]     # soft purple while preparing
+    ready: [5, 10, 8]       # clear teal, ready to help
 
 # Active personality. Override with: python ohbot_chat.py --persona pirate
 persona: friendly

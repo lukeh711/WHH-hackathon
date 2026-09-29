@@ -38,10 +38,14 @@ from . import serial_safe
 from .expression import GESTURES, MOUTH, POSES
 
 # Eye colours as (r, g, b), each 0-10.
+# Keep all states pleasant and intuitive: cool for listening, warm amber for
+# thinking, mint for speaking, and soft violet while loading. Never use red.
 COLOURS = {
-    "listening": (0, 0, 10),  # blue
-    "thinking": (10, 5, 0),  # amber
-    "speaking": (0, 10, 3),  # green
+    "listening": (2, 8, 10),  # friendly sky blue
+    "thinking": (10, 7, 2),  # gentle warm amber
+    "speaking": (0, 10, 8),  # calm mint/green
+    "loading": (7, 5, 10),  # soft purple while preparing
+    "ready": (5, 10, 8),  # upbeat teal
     "off": (0, 0, 0),
 }
 

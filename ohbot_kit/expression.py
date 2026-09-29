@@ -67,9 +67,18 @@ POSES = {
     "thinking": {LIDBLINK: 7, HEADNOD: 6, EYETILT: 8, EYETURN: 7, HEADROLL: 6},
     # The head cock. This is the one that makes people say "aww".
     "curious": {LIDBLINK: 10, HEADNOD: 5, EYETILT: 6, HEADROLL: 8},
+    # A warm, attentive face that feels like someone is listening closely.
+    "warm": {LIDBLINK: 8, HEADNOD: 5, EYETILT: 4, HEADROLL: 7, BOTTOMLIP: 6, TOPLIP: 5},
     # Softened, slightly lowered, head tilted toward you.
     "sympathetic": {LIDBLINK: 6, HEADNOD: 4, EYETILT: 4, HEADROLL: 7, BOTTOMLIP: 5, TOPLIP: 5},
+    "encouraging": {LIDBLINK: 8, HEADNOD: 5, EYETILT: 5, HEADROLL: 6, BOTTOMLIP: 6, TOPLIP: 5},
     "excited": {LIDBLINK: 10, HEADNOD: 7, EYETILT: 7, HEADROLL: 5, BOTTOMLIP: 8, TOPLIP: 7},
+    "amused": {LIDBLINK: 9, HEADNOD: 6, EYETILT: 6, HEADROLL: 8, BOTTOMLIP: 8, TOPLIP: 5},
+    "focused": {LIDBLINK: 7, HEADNOD: 5, EYETILT: 8, HEADROLL: 4, EYETURN: 6},
+    "content": {LIDBLINK: 8, HEADNOD: 5, EYETILT: 5, HEADROLL: 5, BOTTOMLIP: 6, TOPLIP: 5},
+    "proud": {LIDBLINK: 9, HEADNOD: 6, EYETILT: 6, HEADROLL: 3, BOTTOMLIP: 7, TOPLIP: 6},
+    "playful": {LIDBLINK: 10, HEADNOD: 6, EYETILT: 7, HEADROLL: 8, BOTTOMLIP: 7, TOPLIP: 5},
+    "nervous": {LIDBLINK: 8, HEADNOD: 3, EYETILT: 5, HEADROLL: 6, EYETURN: 7},
     "confused": {LIDBLINK: 8, HEADNOD: 5, EYETILT: 5, HEADROLL: 3, EYETURN: 6},
     # Pulled back and slightly away, eyes wide. Pair with the "shiver" gesture.
     "scared": {LIDBLINK: 10, HEADNOD: 3, EYETILT: 6, HEADROLL: 6, BOTTOMLIP: 7, TOPLIP: 6},
@@ -184,6 +193,12 @@ GESTURES = {
         (EYETURN, 5, 4, 0.30),
         (HEADTURN, 5, 3, 0.30),
     ],
+    "peek": [
+        (EYETURN, 8, 6, 0.18),
+        (HEADROLL, 7, 5, 0.20),
+        (EYETURN, 5, 5, 0.18),
+        (HEADROLL, 5, 6, 0.25),
+    ],
     "blink": [
         (LIDBLINK, 0, 10, 0.10),
         (LIDBLINK, 10, 10, 0.05),
@@ -193,6 +208,18 @@ GESTURES = {
         (LIDBLINK, 10, 10, 0.09),
         (LIDBLINK, 0, 10, 0.09),
         (LIDBLINK, 10, 10, 0.05),
+    ],
+    "bounce": [
+        (HEADNOD, 6, 8, 0.12),
+        (HEADNOD, 5, 8, 0.12),
+        (HEADNOD, 6, 8, 0.12),
+        (HEADNOD, 5, 7, 0.12),
+    ],
+    "tiny_wave": [
+        (HEADTURN, 7, 5, 0.22),
+        (HEADTURN, 5, 5, 0.18),
+        (HEADROLL, 7, 5, 0.20),
+        (HEADROLL, 5, 5, 0.20),
     ],
     # A shimmy -- quick side-to-side head roll, like shaking off excitement.
     "wiggle": [
@@ -230,8 +257,11 @@ GESTURE_MEANINGS = {
     "lean_in": "close interest, wanting to hear more",
     "perk_up": "delight at good news",
     "look_away": "embarrassment, discomfort, thinking to oneself",
+    "peek": "checking in, casual interest, a quick look",
     "blink": "a small neutral beat",
     "double_blink": "mild confusion or processing",
+    "bounce": "light excitement, cheerful momentum",
+    "tiny_wave": "friendly greeting, cheerful acknowledgment",
     "shiver": "fear, dread, being creeped out",
     "recoil": "alarm or disgust at something unpleasant",
     "wiggle": "playful excitement, showing off, being silly",
@@ -253,26 +283,34 @@ GESTURE_MEANINGS = {
 # Every gesture must appear at least once here, or it becomes dead code -- a
 # test enforces that.
 EMOTION_GESTURES = {
-    "neutral": ["blink", "nod", "tilt", "look_away"],
-    "happy": ["nod", "perk_up", "lean_in", "blink"],
-    "excited": ["perk_up", "double_take", "nod", "lean_in"],
-    "sad": ["slow_nod", "look_away", "shake"],
+    "neutral": ["blink", "nod", "tilt", "look_away", "peek"],
+    "happy": ["nod", "perk_up", "lean_in", "blink", "bounce"],
+    "excited": ["perk_up", "double_take", "nod", "lean_in", "bounce"],
+    "sad": ["slow_nod", "look_away", "shake", "peek"],
     # No `shake` here, despite "disbelief at something bad" fitting the mood.
     # Sympathetic replies often turn towards encouragement -- "don't worry,
     # I'll help you prepare" -- and delivering that with a head shake reads as
     # "no". Observed on hardware; `tilt` carries the same warmth without the
     # contradiction.
-    "sympathetic": ["slow_nod", "lean_in", "tilt"],
-    "surprised": ["double_take", "recoil", "perk_up"],
-    "scared": ["shiver", "recoil", "look_away"],
-    "curious": ["tilt", "lean_in", "double_blink", "blink"],
-    "confused": ["double_blink", "tilt", "shake"],
-    "thinking": ["look_away", "double_blink", "tilt"],
-    "silly": ["wiggle", "giggle", "perk_up", "double_take"],
-    "sleepy": ["slow_nod", "blink"],
-    "goofy": ["wiggle", "giggle", "perk_up"],
-    "smug": ["tilt", "nod"],
-    "mischievous": ["wiggle", "look_away", "double_blink"],
+    "sympathetic": ["slow_nod", "lean_in", "tilt", "tiny_wave"],
+    "warm": ["slow_nod", "lean_in", "tilt", "tiny_wave"],
+    "surprised": ["double_take", "recoil", "perk_up", "peek"],
+    "scared": ["shiver", "recoil", "look_away", "peek"],
+    "curious": ["tilt", "lean_in", "double_blink", "blink", "peek"],
+    "confused": ["double_blink", "tilt", "shake", "peek"],
+    "thinking": ["look_away", "double_blink", "tilt", "peek"],
+    "silly": ["wiggle", "giggle", "perk_up", "double_take", "bounce"],
+    "sleepy": ["slow_nod", "blink", "tilt"],
+    "goofy": ["wiggle", "giggle", "perk_up", "bounce"],
+    "smug": ["tilt", "nod", "peek"],
+    "mischievous": ["wiggle", "look_away", "double_blink", "peek"],
+    "amused": ["giggle", "wiggle", "bounce", "blink"],
+    "focused": ["tilt", "look_away", "blink", "nod"],
+    "content": ["slow_nod", "blink", "tiny_wave", "tilt"],
+    "proud": ["nod", "perk_up", "tiny_wave", "bounce"],
+    "playful": ["wiggle", "tiny_wave", "giggle", "bounce", "peek"],
+    "encouraging": ["slow_nod", "tiny_wave", "lean_in", "tilt"],
+    "nervous": ["look_away", "double_blink", "recoil", "peek"],
 }
 
 # Emotions the LLM is allowed to pick. Kept in one place so the JSON schema and
